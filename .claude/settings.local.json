@@ -8,7 +8,9 @@
       "Bash(cmd /c \"dir \"\"node_modules\"\" /b\")",
       "Bash(npx docusaurus clear)",
       "Bash(npx docusaurus start --port 4001)",
-      "Bash(dir \"C:\\Users\\ahmed\\Desktop\\Hackthone-01\\Robotics-book\\static\\img\" /b)"
+      "Bash(dir \"C:\\Users\\ahmed\\Desktop\\Hackthone-01\\Robotics-book\\static\\img\" /b)",
+      "Bash(git branch -M main)",
+      "Bash(git push -u origin main)"
     ]
   }
 }

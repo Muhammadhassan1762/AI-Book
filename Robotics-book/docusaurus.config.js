@@ -11,14 +11,14 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://ahmed-hackthone01.github.io',
+  url: 'https://muhammadhassan1762.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<organization-name>/'
-  baseUrl: '/robotics-book/',
+  baseUrl: '/AI-Book/',
 
   // GitHub pages deployment config.
-  organizationName: 'ahmed-hackthone01', // Usually your GitHub org/user name.
-  projectName: 'robotics-book', // Usually your repo name.
+  organizationName: 'Muhammadhassan1762', // Usually your GitHub org/user name.
+  projectName: 'AI-Book', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -75,9 +75,8 @@ const config = {
             position: 'left',
             label: 'Tutorials',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/Muhammadhassan1762/AI-Book',
             label: 'GitHub',
             position: 'right',
           },
@@ -116,12 +115,8 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/Muhammadhassan1762/AI-Book',
               },
             ],
           },
