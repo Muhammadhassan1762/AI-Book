@@ -14,7 +14,7 @@ const config = {
   url: 'https://muhammadhassan1762.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<organization-name>/'
-  baseUrl: '/AI-Book/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   organizationName: 'Muhammadhassan1762', // Usually your GitHub org/user name.
