@@ -1,0 +1,29 @@
+# Whisper Configuration for VLA System
+# Configuration for speech-to-text processing in the Vision-Language-Action pipeline
+
+whisper_node:
+  ros__parameters:
+    # Model configuration
+    model_size: "base"  # Options: tiny, base, small, medium, large
+    language: "en"      # Language code for speech recognition
+    use_gpu: true       # Whether to use GPU acceleration
+
+    # Audio processing parameters
+    sample_rate: 16000  # Audio sample rate in Hz
+    chunk_duration: 0.1 # Duration of audio chunks in seconds
+    silence_threshold: -50  # Silence threshold in dB
+
+    # Confidence and accuracy settings
+    confidence_threshold: 0.7  # Minimum confidence for accepted transcription
+    max_transcription_length: 200  # Maximum length of transcribed text
+
+    # Topic names for ROS communication
+    input_audio_topic: "/audio_input"
+    output_text_topic: "/vla/command"
+
+    # Service names
+    process_command_service: "/vla/process_command"
+
+    # Debug settings
+    enable_debug: false
+    log_level: "INFO"

@@ -1,0 +1,116 @@
+# Navigation Interface Contract
+
+## Overview
+This contract defines the interface for Nav2 navigation components in the AI-Robot Brain system.
+
+## Navigation Node
+- **Node Name**: `nav2_interface`
+- **Purpose**: Plan and execute navigation paths using Nav2 framework with VSLAM input
+
+### Subscribers
+- **Topic**: `/vslam/map`
+- **Message Type**: `nav_msgs/OccupancyGrid`
+- **Queue Size**: 1
+- **Description**: Receives map from VSLAM system for navigation planning
+
+- **Topic**: `/vslam/pose`
+- **Message Type**: `geometry_msgs/PoseStamped`
+- **Queue Size**: 10
+- **Description**: Receives current robot pose from VSLAM for navigation
+
+- **Topic**: `/initialpose`
+- **Message Type**: `geometry_msgs/PoseWithCovarianceStamped`
+- **Queue Size**: 1
+- **Description**: Receives initial pose for the robot (for localization)
+
+- **Topic**: `/clicked_goal`
+- **Message Type**: `geometry_msgs/PoseStamped`
+- **Queue Size**: 1
+- **Description**: Receives navigation goals from user interface
+
+### Publishers
+- **Topic**: `/nav2/plan`
+- **Message Type**: `nav_msgs/Path`
+- **Frequency**: Variable (when new plan computed)
+- **Description**: Publishes planned navigation path
+
+- **Topic**: `/nav2/cmd_vel`
+- **Message Type**: `geometry_msgs/Twist`
+- **Frequency**: 10 Hz
+- **Description**: Publishes velocity commands for robot navigation
+
+- **Topic**: `/nav2/progress`
+- **Message Type**: `std_msgs/Float32`
+- **Frequency**: 1 Hz
+- **Description**: Publishes navigation progress percentage
+
+- **Topic**: `/nav2/status`
+- **Message Type**: `std_msgs/String`
+- **Frequency**: Variable
+- **Description**: Publishes navigation status messages
+
+### Actions
+- **Action Name**: `/navigate_to_pose`
+- **Action Type**: `nav2_msgs/NavigateToPose`
+- **Description**: Navigate to a specific pose goal
+- **Goal**:
+  - `pose`: geometry_msgs/PoseStamped (target pose to navigate to)
+  - `behavior_tree`: string (optional behavior tree to use)
+- **Result**:
+  - `result_code`: int8 (navigation result code)
+  - `message`: string (status message)
+
+- **Action Name**: `/compute_path_to_pose`
+- **Action Type**: `nav2_msgs/ComputePathToPose`
+- **Description**: Compute path to a specific pose without executing
+- **Goal**:
+  - `pose`: geometry_msgs/PoseStamped (target pose)
+  - `planner_id`: string (specific planner to use)
+- **Result**:
+  - `path`: nav_msgs/Path (computed path)
+
+### Services
+- **Service Name**: `/clear_costmaps`
+- **Service Type**: `std_srvs/Empty`
+- **Description**: Clears the navigation costmaps
+
+- **Service Name**: `/get_costmap`
+- **Service Type**: `nav2_msgs/GetCostmap`
+- **Description**: Retrieves the current costmap
+- **Request**:
+  - `get_costmap_service`: nav2_msgs/GetCostmapRequest
+- **Response**:
+  - `map`: nav_msgs/OccupancyGrid (current costmap)
+
+### Parameters
+- **Parameter**: `robot_base_frame` (string)
+- **Default**: "base_link"
+- **Description**: Robot base frame for navigation transforms
+
+- **Parameter**: `global_frame` (string)
+- **Default**: "map"
+- **Description**: Global frame for navigation
+
+- **Parameter**: `planner_frequency` (double)
+- **Default**: 1.0
+- **Description**: Frequency to run path planner in Hz
+
+- **Parameter**: `controller_frequency` (double)
+- **Default**: 20.0
+- **Description**: Frequency to run velocity controller in Hz
+
+- **Parameter**: `max_linear_speed` (double)
+- **Default**: 0.5
+- **Description**: Maximum linear speed for navigation
+
+- **Parameter**: `max_angular_speed` (double)
+- **Default**: 1.0
+- **Description**: Maximum angular speed for navigation
+
+- **Parameter**: `goal_tolerance` (double)
+- **Default**: 0.25
+- **Description**: Tolerance for reaching navigation goal
+
+- **Parameter**: `avoid_collision` (bool)
+- **Default**: true
+- **Description**: Whether to enable collision avoidance

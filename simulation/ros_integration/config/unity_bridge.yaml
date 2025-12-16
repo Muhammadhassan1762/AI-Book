@@ -1,0 +1,43 @@
+# Unity Bridge Configuration
+# Configuration for connecting Unity visual simulation with ROS/Gazebo physics simulation
+
+unity_bridge:
+  ros__parameters:
+    # Connection settings
+    bridge_url: "ws://localhost:9090"
+    reconnect_timeout: 5.0
+    max_reconnect_attempts: 10
+
+    # Topic mappings
+    topic_mappings:
+      # Physics state from Gazebo to Unity
+      - from_topic: "/robot/physics/state"
+        to_topic: "/unity/robot/state"
+        msg_type: "nav_msgs/msg/Odometry"
+        frequency: 50.0
+
+      # Visual state from Unity to display
+      - from_topic: "/robot/visual/state"
+        to_topic: "/unity/robot/visual"
+        msg_type: "geometry_msgs/msg/PoseStamped"
+        frequency: 30.0
+
+      # Sensor data visualization
+      - from_topic: "/laser_scan"
+        to_topic: "/unity/lidar/visualization"
+        msg_type: "sensor_msgs/msg/LaserScan"
+        frequency: 10.0
+
+      - from_topic: "/imu/data"
+        to_topic: "/unity/imu/visualization"
+        msg_type: "sensor_msgs/msg/Imu"
+        frequency: 100.0
+
+    # Synchronization settings
+    sync_enabled: true
+    sync_frequency: 1.0
+    sync_topic: "/twin/sync_status"
+
+    # Performance settings
+    queue_size: 10
+    use_tcp_no_delay: true

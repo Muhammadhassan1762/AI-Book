@@ -1,0 +1,27 @@
+# Command Processing Service
+# Service for processing raw voice commands and converting to structured format
+
+# Request
+string raw_command
+float32 audio_confidence
+
+---
+# Response
+bool success
+string processed_command
+string intent
+string[] parameters
+string error_message
+int32 error_code  # 0=Success, 1=General error, 2=Invalid input, 3=Timeout, 4=Safety violation, 5=Resource unavailable
+
+# Example Request:
+# raw_command: "pick up the red cup"
+# audio_confidence: 0.89
+
+# Example Response:
+# success: true
+# processed_command: "pick up the red cup"
+# intent: "PICK_UP_OBJECT"
+# parameters: ["red cup"]
+# error_message: ""
+# error_code: 0

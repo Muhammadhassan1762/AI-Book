@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pwsh -File .specify/scripts/powershell/create-new-feature.ps1 -Json -ShortName \"ros2-fundamentals\" -Number 1 \"Module 1: The Robotic Nervous System (ROS 2)\n\nTarget audience:\nAI and software engineering students new to robotics\n\nFocus:\nROS 2 as middleware for humanoid robot control\n\nChapters:\n\nChapter 1: ROS 2 Fundamentals\n- Nodes, topics, services, actions\n- Publisher–subscriber model\n- Role of ROS 2 in robot control\n\nChapter 2: AI Agents with rclpy\n- Python-based ROS 2 nodes\n- Bridging AI decision logic to robot controllers\n- Simulation-first control flow\n\nChapter 3: Humanoid Modeling with URDF\n- Links, joints, frames\n- Visual vs collision models\n- URDF integration with ROS 2\n\nSuccess criteria:\n- Reader understands ROS 2 communication\n- Reader can connect AI agents to ROS via rclpy\n- Reader can interpret a basic URDF\n\nConstraints:\n- Format: Markdown\n- Simulation-based examples only\n- Clarity level: Grade 10–12\n\nNot building:\n- Hardware deployment guides\n- Advanced ROS tuning\")",
+      "Bash(.specify/scripts/powershell/create-new-feature.ps1 -Json -ShortName \"ai-robot-brain\" -Number 1 \"Module 3: The AI-Robot Brain (NVIDIA Isaac™)\n\nTarget audience:\nStudents learning AI-powered perception, mapping, and navigation for humanoid robots.\n\nFocus:\n- Isaac Sim for photorealistic simulation + synthetic data.\n- Isaac ROS for accelerated VSLAM and perception pipelines.\n- Nav2 for path planning and humanoid navigation.\n\nSuccess criteria:\n- Explains how Isaac Sim generates RGB/Depth/Segmentation datasets.\n- Shows a full perception pipeline: camera → VSLAM → map.\n- Demonstrates Nav2 path planning workflow with clear diagrams.\n- Includes 2–3 hands-on examples (synthetic data, VSLAM demo, Nav2 goal).\n- Output as Docusaurus-ready Markdown.\n- Uses simple, beginner-friendly explanations.\n\nConstraints:\n- No GPU setup or installation instructions.\n- No reinforcement learning or heavy math.\n- No full humanoid locomotion controller.\n- Length: 1500–3000 words.\n\nSources:\n- Isaac Sim docs\n- Isaac ROS docs\n- Nav2 docs  \n(All public and open.)\n\nNot building:\n- Custom neural network training.\n- Real-robot deployment steps.\n- Vendor-specific hardware configs.\n\nTimeline:\nProduce within the Module 3 writing window after Module 2.\")",
+      "Bash(pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "Bash(cmd /c \"dir \"\"node_modules\\prism-react-renderer\"\" /b\")",
+      "Bash(cmd /c \"dir \"\"node_modules\"\" /b\")",
+      "Bash(npx docusaurus clear)",
+      "Bash(npx docusaurus start --port 4001)",
+      "Bash(dir \"C:\\Users\\ahmed\\Desktop\\Hackthone-01\\Robotics-book\\static\\img\" /b)"
+    ]
+  }
+}

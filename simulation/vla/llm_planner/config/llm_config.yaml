@@ -1,0 +1,38 @@
+# LLM Planner Configuration for VLA System
+# Configuration for cognitive planning in the Vision-Language-Action pipeline
+
+llm_planner_node:
+  ros__parameters:
+    # LLM provider configuration
+    llm_provider: "openai"  # Options: openai, ollama, anthropic
+    model_name: "gpt-4o"    # Model to use for planning
+    api_key: ""             # API key (will be set via environment variable)
+    base_url: ""            # Base URL for API (optional, for custom endpoints)
+
+    # Local LLM configuration (for Ollama)
+    ollama_host: "localhost"
+    ollama_port: 11434
+
+    # Planning parameters
+    max_tokens: 1000        # Maximum tokens for response
+    temperature: 0.3        # Creativity control (0.0-1.0)
+    timeout: 30.0           # Request timeout in seconds
+    max_retries: 3          # Number of retry attempts
+
+    # Action planning settings
+    enable_context_awareness: true  # Include environmental context
+    enable_safety_validation: true  # Validate actions for safety
+    enable_multi_step_planning: true  # Generate multi-step action sequences
+
+    # Topic names for ROS communication
+    input_command_topic: "/vla/command"
+    output_action_sequence_topic: "/vla/action_sequence"
+    status_topic: "/vla/status"
+
+    # Service names
+    plan_actions_service: "/vla/plan_actions"
+    validate_safety_service: "/vla/validate_safety"
+
+    # Debug settings
+    enable_debug: false
+    log_level: "INFO"

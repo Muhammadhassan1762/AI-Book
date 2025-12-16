@@ -1,0 +1,27 @@
+# Environment Configuration
+# Configuration for simulation environment settings
+
+environment_manager:
+  ros__parameters:
+    # Physics engine settings
+    physics_engine: "ode"
+    gravity_vector: [0.0, 0.0, -9.81]
+    simulation_realtime_factor: 1.0
+    max_step_size: 0.001
+    real_time_update_rate: 1000
+
+    # Environment settings
+    environment_name: "basic_physics"
+    enable_wind: false
+    wind_vector: [0.0, 0.0, 0.0]
+
+    # Performance settings
+    enable_physics_statistics: true
+    enable_contact_detection: true
+    contact_surface_threshold: 0.001
+    max_contacts: 20
+
+    # Validation settings
+    validation_enabled: true
+    validation_frequency: 1.0
+    validation_metrics_topic: "/validation/metrics"

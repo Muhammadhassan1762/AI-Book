@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<material name="green">
+  <ambient>0.0 1.0 0.0 1.0</ambient>
+  <diffuse>0.0 1.0 0.0 1.0</diffuse>
+  <specular>0.0 1.0 0.0 1.0</specular>
+  <emission>0.0 0.0 0.0 1.0</emission>
+</material>

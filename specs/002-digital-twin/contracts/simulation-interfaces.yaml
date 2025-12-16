@@ -1,0 +1,105 @@
+# Simulation Interfaces Contract: Digital Twin (Gazebo & Unity)
+
+## Overview
+This contract defines the interfaces for the digital twin simulation system, including physics simulation in Gazebo, visual simulation in Unity, and sensor simulation components.
+
+## Physics Simulation Interface
+- **Node Name**: `physics_simulator`
+- **Purpose**: Manages physics simulation in Gazebo environment
+
+### Publishers
+- **Topic**: `/robot/physics/state`
+- **Message Type**: `nav_msgs/Odometry`
+- **Frequency**: 50 Hz
+- **Description**: Provides physics-based robot state with position, velocity, and acceleration
+
+### Services
+- **Service Name**: `/physics/reset_simulation`
+- **Service Type**: `std_srvs/Empty`
+- **Description**: Resets the physics simulation to initial state
+
+- **Service Name**: `/physics/set_gravity`
+- **Service Type**: `gazebo_msgs/SetPhysicsProperties`
+- **Description**: Configures gravity vector and physics properties
+
+## Visual Simulation Interface
+- **Node Name**: `visual_simulator`
+- **Purpose**: Manages visual rendering in Unity environment
+
+### Publishers
+- **Topic**: `/robot/visual/state`
+- **Message Type**: `geometry_msgs/PoseStamped`
+- **Frequency**: 30 Hz
+- **Description**: Provides visual-only robot state for rendering purposes
+
+### Subscribers
+- **Topic**: `/robot/physics/state`
+- **Message Type**: `nav_msgs/Odometry`
+- **Description**: Receives physics state to update visual representation
+
+## Sensor Simulation Interface
+- **Node Name**: `sensor_simulator`
+- **Purpose**: Simulates various robot sensors with realistic noise models
+
+### Publishers
+- **Topic**: `/laser_scan`
+- **Message Type**: `sensor_msgs/LaserScan`
+- **Frequency**: 10 Hz
+- **Description**: Simulated LiDAR data with configurable noise parameters
+
+- **Topic**: `/depth_camera/image_raw`
+- **Message Type**: `sensor_msgs/Image`
+- **Frequency**: 15 Hz
+- **Description**: Simulated depth camera RGB image data
+
+- **Topic**: `/depth_camera/depth/image_raw`
+- **Message Type**: `sensor_msgs/Image`
+- **Frequency**: 15 Hz
+- **Description**: Simulated depth camera depth data
+
+- **Topic**: `/imu/data`
+- **Message Type**: `sensor_msgs/Imu`
+- **Frequency**: 100 Hz
+- **Description**: Simulated IMU data with realistic drift and noise characteristics
+
+## Digital Twin Synchronization Interface
+- **Node Name**: `twin_synchronizer`
+- **Purpose**: Maintains synchronization between physics and visual simulations
+
+### Publishers
+- **Topic**: `/twin/sync_status`
+- **Message Type**: `std_msgs/String`
+- **Frequency**: 1 Hz
+- **Description**: Reports synchronization status between simulation environments
+
+### Services
+- **Service Name**: `/twin/sync_now`
+- **Service Type**: `std_srvs/Trigger`
+- **Description**: Forces immediate synchronization between environments
+
+## Environment Configuration Interface
+- **Node Name**: `env_manager`
+- **Purpose**: Manages simulation environment settings
+
+### Parameters
+- **Parameter**: `physics_engine` (string)
+- **Default**: "ode"
+- **Description**: Physics engine to use (ode, bullet, dart)
+
+- **Parameter**: `gravity_vector` (list of floats)
+- **Default**: [0.0, 0.0, -9.81]
+- **Description**: Gravity vector in x, y, z coordinates
+
+- **Parameter**: `simulation_realtime_factor` (double)
+- **Default**: 1.0
+- **Description**: Real-time factor for simulation speed (1.0 = real-time)
+
+## Validation Interface
+- **Node Name**: `validator`
+- **Purpose**: Validates simulation accuracy against real-world physics
+
+### Publishers
+- **Topic**: `/validation/metrics`
+- **Message Type**: `std_msgs/Float32MultiArray`
+- **Frequency**: 1 Hz
+- **Description**: Provides validation metrics comparing simulation to expected physics

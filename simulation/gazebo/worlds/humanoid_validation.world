@@ -1,0 +1,203 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="humanoid_validation">
+    <!-- Include the default ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Include the default sun -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Set physics parameters for validation -->
+    <physics type="ode">
+      <gravity>0 0 -9.81</gravity>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <!-- Validation objects and obstacles -->
+    <model name="validation_ramp">
+      <pose>-2 0 0 0 0 0</pose>
+      <link name="link">
+        <inertial>
+          <mass>10.0</mass>
+          <inertia>
+            <ixx>1.0</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>1.0</iyy>
+            <iyz>0.0</iyz>
+            <izz>1.0</izz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>file://meshes/ramp.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.7 1</ambient>
+            <diffuse>0.6 0.6 0.8 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>file://meshes/ramp_collision.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="validation_steps">
+      <pose>2 0 0 0 0 0</pose>
+      <link name="link">
+        <inertial>
+          <mass>5.0</mass>
+          <inertia>
+            <ixx>0.5</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.5</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.5</izz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.0 0.5 0.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.6 0.4 1</ambient>
+            <diffuse>0.5 0.7 0.5 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.0 0.5 0.3</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Small obstacles for testing navigation -->
+    <model name="obstacle_1">
+      <pose>0 2 0.1 0 0 0</pose>
+      <link name="link">
+        <inertial>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.2</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.8 0.4 0.2 1</ambient>
+            <diffuse>0.9 0.5 0.3 1</diffuse>
+            <specular>0.2 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.2</length>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="obstacle_2">
+      <pose>0 -2 0.1 0 0 0</pose>
+      <link name="link">
+        <inertial>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.15</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.2 0.8 0.8 1</ambient>
+            <diffuse>0.3 0.9 0.9 1</diffuse>
+            <specular>0.1 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.15</radius>
+            </sphere>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Place the sensor-equipped robot in the world for validation -->
+    <include>
+      <uri>model://sensor_equipped_robot</uri>
+      <pose>0 0 1 0 0 0</pose>
+    </include>
+
+    <!-- Additional lighting for better visibility -->
+    <light name="validation_light_1" type="point">
+      <pose>3 3 5 0 0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+    <light name="validation_light_2" type="point">
+      <pose>-3 -3 5 0 0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+  </world>
+</sdf>

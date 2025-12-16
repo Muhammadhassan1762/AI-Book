@@ -1,0 +1,101 @@
+# VLA Simulation Environment Configuration
+# Defines the home environment for VLA system testing
+
+environment:
+  name: "home_apartment"
+  description: "Standard 3-room apartment for VLA system testing"
+
+rooms:
+  - name: "kitchen"
+    location: [0.0, 0.0, 0.0]
+    dimensions: [4.0, 3.0, 2.5]  # width, depth, height in meters
+    objects:
+      - type: "table"
+        position: [1.0, 0.5, 0.0]
+        description: "dining table with cups and plates"
+      - type: "counter"
+        position: [-1.5, 1.0, 0.0]
+        description: "kitchen counter"
+
+  - name: "living_room"
+    location: [0.0, 4.0, 0.0]
+    dimensions: [5.0, 4.0, 2.5]
+    objects:
+      - type: "couch"
+        position: [0.0, 1.0, 0.0]
+        description: "center couch"
+      - type: "coffee_table"
+        position: [0.0, -0.5, 0.0]
+        description: "coffee table with books and remote"
+      - type: "tv_stand"
+        position: [2.0, 1.5, 0.0]
+        description: "TV stand"
+
+  - name: "bedroom"
+    location: [4.0, 0.0, 0.0]
+    dimensions: [3.5, 3.0, 2.5]
+    objects:
+      - type: "bed"
+        position: [0.0, 0.0, 0.0]
+        description: "double bed"
+      - type: "nightstand"
+        position: [0.8, 0.5, 0.0]
+        description: "nightstand with lamp and book"
+      - type: "wardrobe"
+        position: [-1.5, 1.0, 0.0]
+        description: "wardrobe closet"
+
+common_objects:
+  - type: "cup"
+    variations: ["red_cup", "blue_cup", "white_cup"]
+    description: "Drinkware for manipulation tasks"
+
+  - type: "book"
+    variations: ["hardcover_book", "paperback_book"]
+    description: "Books for manipulation tasks"
+
+  - type: "ball"
+    variations: ["red_ball", "blue_ball", "green_ball"]
+    description: "Balls for detection and manipulation"
+
+  - type: "box"
+    variations: ["small_box", "medium_box"]
+    description: "Boxes for organization tasks"
+
+robot_config:
+  starting_position: [0.0, 0.0, 0.0]  # In kitchen
+  navigation_speed: 0.5  # m/s
+  manipulation_range: 1.0  # meters
+  detection_range: 3.0  # meters
+
+task_scenarios:
+  - name: "simple_navigation"
+    description: "Navigate between rooms"
+    commands:
+      - "go to the kitchen"
+      - "move to the bedroom"
+      - "go to the living room"
+
+  - name: "object_manipulation"
+    description: "Pick up and place objects"
+    commands:
+      - "pick up the red cup"
+      - "place the cup on the table"
+      - "get the book from the nightstand"
+
+  - name: "room_cleaning"
+    description: "Clean room by organizing objects"
+    commands:
+      - "clean the living room"
+      - "organize the coffee table"
+      - "pick up all the balls"
+
+safety_constraints:
+  - forbidden_areas: []  # No forbidden areas in this environment
+  - collision_padding: 0.3  # meters
+  - maximum_velocity: 1.0  # m/s
+
+perception_config:
+  detection_accuracy: 0.95
+  false_positive_rate: 0.05
+  occlusion_handling: true

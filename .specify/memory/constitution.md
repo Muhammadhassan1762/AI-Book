@@ -1,55 +1,67 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT:
+Version change: 1.0.0 → 1.1.0
+Modified principles: [PRINCIPLE_1_NAME] → Accuracy and Traceability, [PRINCIPLE_2_NAME] → Clarity for Students, [PRINCIPLE_3_NAME] → Reproducibility, [PRINCIPLE_4_NAME] → Simulation-First Development, [PRINCIPLE_5_NAME] → Embodied Intelligence
+Added sections: Tech Stack Principles, Content Standards, RAG Rules, Safety and Ethics
+Removed sections: None
+Templates requiring updates: ✅ Updated
+Follow-up TODOs: None
+-->
+# AI-Native Physical AI & Humanoid Robotics Book Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Accuracy and Traceability
+All factual claims must be traceable to primary and official sources; ≥60% of content must come from official or peer-reviewed sources; No hallucinated content allowed; APA citation style required for all references
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Clarity for Students
+Content must be clear and accessible for CS/Software Engineering students; Clarity target: Flesch-Kincaid Grade 10–12; Modular, chapter-based structure with concepts, architecture, specs/code, and simulation in each chapter
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Reproducibility
+All code, specifications, and simulations must be reproducible; Deterministic LLM-to-robot action pipelines required; Code and specs must work consistently across environments
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Simulation-First Physical AI Development
+Prioritize simulation before real-world deployment; Focus on digital twins with physics, sensors, and simulation realism; Use simulation for testing before physical implementation
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Embodied Intelligence
+Emphasize perception → reasoning → action pipeline; Develop AI-Robot brain with Isaac Sim, VSLAM, navigation; Integrate Vision-Language-Action for LLM-to-ROS actions and voice commands
 
-### [PRINCIPLE_6_NAME]
+### VI. Tech Stack Integration
+Use Docusaurus for documentation, Spec-Kit Plus for specifications, ROS 2 for robotics, FastAPI for RAG backend, OpenAI Agents/ChatKit for AI capabilities, with Neon Postgres and Qdrant for vector storage
 
+## Content Standards and Requirements
 
-[PRINCIPLE__DESCRIPTION]
+- All factual claims must be traceable to credible sources
+- Citation style: APA format
+- At least 60% of content must come from official or peer-reviewed sources
+- No fabricated or hallucinated content
+- Deterministic LLM-to-robot action pipelines
+- Content scope includes ROS 2, Digital Twins, AI-Robot Brain, Vision-Language-Action, and capstone autonomous humanoid projects
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## RAG System Rules
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- RAG chatbot must answer only from indexed book content
+- Support user-selected-text-only answers
+- Return "Not found in provided text" if question cannot be answered from provided content
+- All responses must cite the relevant chapter or section
+- Strict adherence to content boundaries - no external knowledge injection
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Safety and Ethics Standards
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Simulation before real-world deployment is mandatory
+- Explicit safety limits and failure modes must be documented
+- Ethical considerations for AI and robotics applications must be addressed
+- Clear guidelines for responsible AI development and deployment
+
+## Development Workflow
+
+- Create and deploy using Docusaurus and GitHub Pages
+- Use Claude Code for authoring assistance
+- Follow modular, chapter-based structure
+- Each chapter must include concepts, architecture, specs/code, and simulation
+- Maintain simulation-first approach throughout development
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution governs all aspects of the AI-Native Physical AI & Humanoid Robotics Book project. All development, content creation, and deployment activities must comply with these principles. Changes to this constitution require explicit approval and documentation of the rationale. All team members must verify compliance with these principles during reviews and development.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: 2025-12-15 | **Last Amended**: 2025-12-15

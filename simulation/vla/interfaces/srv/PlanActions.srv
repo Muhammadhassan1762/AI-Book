@@ -1,0 +1,25 @@
+# Action Planning Service
+# Service for converting natural language commands to action sequences
+
+# Request
+string command_text
+string intent
+string[] parameters
+
+---
+# Response
+bool success
+VLAActionSequence action_sequence
+string error_message
+int32 error_code  # 0=Success, 1=General error, 2=Invalid input, 3=Timeout, 4=Safety violation, 5=Resource unavailable
+
+# Example Request:
+# command_text: "go to the kitchen and bring me a cup"
+# intent: "NAVIGATE_AND_MANIPULATE"
+# parameters: ["kitchen", "cup"]
+
+# Example Response:
+# success: true
+# action_sequence: VLAActionSequence with navigation and manipulation actions
+# error_message: ""
+# error_code: 0

@@ -1,0 +1,64 @@
+# Isaac Sim Data Generation Interface Contract
+
+## Overview
+This contract defines the interface for Isaac Sim synthetic data generation components in the AI-Robot Brain system.
+
+## Isaac Sim Data Generation Node
+- **Node Name**: `synthetic_data_generator`
+- **Purpose**: Generate synthetic RGB, Depth, and Segmentation datasets using Isaac Sim Replicator
+
+### Publishers
+- **Topic**: `/synthetic/rgb`
+- **Message Type**: `sensor_msgs/Image`
+- **Frequency**: Variable (based on camera frame rate)
+- **Description**: Publishes RGB images generated from Isaac Sim simulation
+
+- **Topic**: `/synthetic/depth`
+- **Message Type**: `sensor_msgs/Image`
+- **Frequency**: Variable (synchronized with RGB)
+- **Description**: Publishes depth images from Isaac Sim depth sensors
+
+- **Topic**: `/synthetic/segmentation`
+- **Message Type**: `sensor_msgs/Image`
+- **Frequency**: Variable (synchronized with RGB)
+- **Description**: Publishes semantic segmentation masks from Isaac Sim
+
+### Services
+- **Service Name**: `/generate_dataset`
+- **Service Type**: `std_srvs/Trigger`
+- **Description**: Triggers the synthetic dataset generation process
+
+- **Service Name**: `/configure_camera`
+- **Service Type**: Custom service (CameraConfiguration)
+- **Description**: Configures camera parameters for data generation
+- **Request**:
+  - `camera_name`: string (name of the camera to configure)
+  - `resolution_width`: int32 (width of the image in pixels)
+  - `resolution_height`: int32 (height of the image in pixels)
+  - `fov`: float64 (field of view in degrees)
+  - `position`: geometry_msgs/Point (position of the camera)
+  - `orientation`: geometry_msgs/Quaternion (orientation of the camera)
+- **Response**:
+  - `success`: bool (whether configuration was successful)
+  - `message`: string (status message)
+
+### Parameters
+- **Parameter**: `dataset_output_path` (string)
+- **Default**: "/workspace/datasets/"
+- **Description**: Path where generated datasets will be saved
+
+- **Parameter**: `scene_usd_path` (string)
+- **Default**: "/Isaac/Samples/Replicator/Files/corridor.usd"
+- **Description**: USD file path for the Isaac Sim scene
+
+- **Parameter**: `num_samples` (int)
+- **Default**: 1000
+- **Description**: Number of samples to generate in the dataset
+
+- **Parameter**: `enable_depth` (bool)
+- **Default**: true
+- **Description**: Whether to generate depth images
+
+- **Parameter**: `enable_segmentation` (bool)
+- **Default**: true
+- **Description**: Whether to generate segmentation masks

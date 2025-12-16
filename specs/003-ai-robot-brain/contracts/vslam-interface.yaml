@@ -1,0 +1,83 @@
+# VSLAM Processing Interface Contract
+
+## Overview
+This contract defines the interface for Isaac ROS VSLAM processing components in the AI-Robot Brain system.
+
+## VSLAM Processing Node
+- **Node Name**: `vslam_processor`
+- **Purpose**: Process visual inputs to generate maps and pose estimates using Isaac ROS Visual SLAM
+
+### Subscribers
+- **Topic**: `/camera/rgb`
+- **Message Type**: `sensor_msgs/Image`
+- **Queue Size**: 10
+- **Description**: Receives RGB camera feed for VSLAM processing
+
+- **Topic**: `/camera/depth` (optional)
+- **Message Type**: `sensor_msgs/Image`
+- **Queue Size**: 10
+- **Description**: Receives depth information to enhance VSLAM accuracy
+
+### Publishers
+- **Topic**: `/vslam/pose`
+- **Message Type**: `geometry_msgs/PoseStamped`
+- **Frequency**: 30 Hz
+- **Description**: Publishes estimated robot pose from VSLAM
+
+- **Topic**: `/vslam/map`
+- **Message Type**: `nav_msgs/OccupancyGrid`
+- **Frequency**: 1 Hz
+- **Description**: Publishes generated occupancy map from VSLAM
+
+- **Topic**: `/vslam/trajectory`
+- **Message Type**: `nav_msgs/Path`
+- **Frequency**: 10 Hz
+- **Description**: Publishes robot trajectory from VSLAM
+
+### Services
+- **Service Name**: `/reset_vslam`
+- **Service Type**: `std_srvs/Trigger`
+- **Description**: Resets the VSLAM system to initial state
+
+- **Service Name**: `/save_map`
+- **Service Type**: Custom service (SaveMapRequest)
+- **Description**: Saves the current map to file
+- **Request**:
+  - `filename`: string (name for the saved map file)
+  - `map_format`: string (format to save the map in)
+- **Response**:
+  - `success`: bool (whether save was successful)
+  - `message`: string (status message)
+
+### Actions
+- **Action Name**: `/vslam/localize`
+- **Action Type**: Custom action (LocalizeAction)
+- **Description**: Performs localization in a known map
+- **Goal**:
+  - `map_id`: string (ID of the map to localize in)
+  - `initial_pose`: geometry_msgs/PoseWithCovarianceStamped (initial pose estimate)
+- **Result**:
+  - `success`: bool (whether localization was successful)
+  - `final_pose`: geometry_msgs/PoseWithCovarianceStamped (final pose estimate)
+  - `confidence`: float64 (confidence in the localization result)
+
+### Parameters
+- **Parameter**: `enable_loop_closure` (bool)
+- **Default**: true
+- **Description**: Whether to enable loop closure detection
+
+- **Parameter**: `min_keyframe_distance` (double)
+- **Default**: 0.2
+- **Description**: Minimum distance between keyframes in meters
+
+- **Parameter**: `max_features` (int)
+- **Default**: 2000
+- **Description**: Maximum number of features to track
+
+- **Parameter**: `tracking_quality_threshold` (double)
+- **Default**: 0.5
+- **Description**: Minimum tracking quality to continue VSLAM
+
+- **Parameter**: `map_resolution` (double)
+- **Default**: 0.05
+- **Description**: Resolution of the generated occupancy grid in meters per cell

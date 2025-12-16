@@ -1,0 +1,103 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache/
+.hypothesis/
+.DS_Store
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+env.bak/
+.ENV/
+
+# ROS/Isaac
+install/
+build/
+log/
+*.log
+*.out
+*.err
+*.pid
+*.seed
+*.session
+.isaac-sim/
+isaac-sim/
+isaac_sim/
+isaac/
+.usd/
+.usda/
+.usdc/
+.usdz/
+.cache/
+*.cache
+
+# Simulation
+*.dae
+*.obj
+*.fbx
+*.stl
+*.gltf
+*.glb
+*.blend
+
+# Documentation
+.nuxt/
+_dist/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Environment specific
+.env*
+.env
+.env.local
+.env.dev
+.env.test
+.env.prod
+
+# Build outputs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docusaurus
+.docusaurus/
+.build/
+/dist/
+/public/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

@@ -1,0 +1,70 @@
+# Isaac ROS VSLAM Configuration for AI-Robot Brain Module
+
+vslam_processor:
+  ros__parameters:
+    # Camera input topics
+    rgb_topic: "/camera/rgb/image_rect_color"
+    depth_topic: "/camera/depth/image_rect_raw"
+
+    # Processing parameters
+    enable_rectification: true
+    enable_stereo: false  # Set to true for stereo input
+    enable_visualization: true
+    enable_point_cloud: true
+
+    # Feature detection parameters
+    max_features: 2000
+    min_features: 100
+    min_features_threshold: 50
+    tracking_quality_threshold: 0.5
+
+    # Keyframe selection
+    min_keyframe_distance: 0.2
+    max_keyframe_distance: 2.0
+    keyframe_overlap_threshold: 0.7
+
+    # Loop closure detection
+    enable_loop_closure: true
+    loop_closure_min_inliers: 10
+    loop_closure_inlier_threshold: 0.9
+    loop_closure_search_radius: 5.0
+
+    # Map management
+    map_size_limit: 10000
+    min_triangulation_angle: 10.0
+    max_reproj_error: 2.0
+
+    # Camera calibration parameters
+    camera_matrix: [384.0, 0.0, 320.0, 0.0, 384.0, 240.0, 0.0, 0.0, 1.0]
+    distortion_coefficients: [0.0, 0.0, 0.0, 0.0, 0.0]
+    baseline: 0.1  # Stereo baseline in meters (if using stereo)
+
+    # Processing parameters
+    processing_rate: 30.0
+    enable_undistortion: false
+
+    # Output parameters
+    publish_rate: 30.0
+    map_publish_rate: 1.0
+    pose_publish_rate: 30.0
+
+    # Optimization parameters
+    bundle_adjustment_frequency: 10
+    max_ba_iterations: 20
+    ba_convergence_threshold: 1e-5
+
+    # Tracking parameters
+    max_tracking_features: 2000
+    min_tracking_features: 50
+    tracking_pyramid_levels: 3
+    tracking_patch_size: 21
+
+    # Coordinate frame settings
+    base_frame: "base_link"
+    camera_frame: "camera_link"
+    map_frame: "map"
+    odom_frame: "odom"
+
+    # Debug settings
+    enable_debug_output: false
+    debug_output_path: "/tmp/vslam_debug"

@@ -1,0 +1,128 @@
+# VLA Test Scenarios Configuration
+# Defines various test scenarios for VLA system validation
+
+scenarios:
+  - name: "basic_navigation"
+    description: "Basic navigation commands"
+    environment: "home_apartment"
+    commands:
+      - text: "go to the kitchen"
+        expected_actions: ["NAVIGATION"]
+        success_criteria: "Robot reaches kitchen location"
+        difficulty: "beginner"
+
+      - text: "move to the bedroom"
+        expected_actions: ["NAVIGATION"]
+        success_criteria: "Robot reaches bedroom location"
+        difficulty: "beginner"
+
+      - text: "go to the living room"
+        expected_actions: ["NAVIGATION"]
+        success_criteria: "Robot reaches living room location"
+        difficulty: "beginner"
+
+  - name: "object_detection"
+    description: "Object detection and identification"
+    environment: "home_apartment"
+    commands:
+      - text: "find the red cup"
+        expected_actions: ["PERCEPTION"]
+        success_criteria: "Red cup is detected and located"
+        difficulty: "beginner"
+
+      - text: "locate all books"
+        expected_actions: ["PERCEPTION"]
+        success_criteria: "All books in environment are detected"
+        difficulty: "intermediate"
+
+      - text: "detect the blue ball"
+        expected_actions: ["PERCEPTION"]
+        success_criteria: "Blue ball is detected"
+        difficulty: "beginner"
+
+  - name: "simple_manipulation"
+    description: "Basic object manipulation tasks"
+    environment: "home_apartment"
+    commands:
+      - text: "pick up the red cup"
+        expected_actions: ["PERCEPTION", "NAVIGATION", "MANIPULATION"]
+        success_criteria: "Red cup is successfully grasped"
+        difficulty: "intermediate"
+
+      - text: "place the cup on the table"
+        expected_actions: ["NAVIGATION", "MANIPULATION"]
+        success_criteria: "Cup is placed on the table"
+        difficulty: "intermediate"
+
+  - name: "complex_manipulation"
+    description: "Multi-step manipulation tasks"
+    environment: "home_apartment"
+    commands:
+      - text: "pick up the book from the nightstand and place it on the bed"
+        expected_actions: ["NAVIGATION", "MANIPULATION", "NAVIGATION", "MANIPULATION"]
+        success_criteria: "Book moved from nightstand to bed"
+        difficulty: "advanced"
+
+      - text: "get the blue ball and bring it to me"
+        expected_actions: ["PERCEPTION", "NAVIGATION", "MANIPULATION", "NAVIGATION"]
+        success_criteria: "Blue ball brought to user location"
+        difficulty: "advanced"
+
+  - name: "room_cleaning"
+    description: "Room organization and cleaning tasks"
+    environment: "home_apartment"
+    commands:
+      - text: "clean the living room"
+        expected_actions: ["PERCEPTION", "NAVIGATION", "MANIPULATION"] * 3
+        success_criteria: "Living room objects organized appropriately"
+        difficulty: "advanced"
+
+      - text: "organize the coffee table"
+        expected_actions: ["PERCEPTION", "NAVIGATION", "MANIPULATION"] * 2
+        success_criteria: "Coffee table cleared and organized"
+        difficulty: "intermediate"
+
+  - name: "multi_room_task"
+    description: "Tasks spanning multiple rooms"
+    environment: "home_apartment"
+    commands:
+      - text: "go to the kitchen, pick up the cup, and bring it to the bedroom"
+        expected_actions: ["NAVIGATION", "MANIPULATION", "NAVIGATION"]
+        success_criteria: "Cup transported from kitchen to bedroom"
+        difficulty: "advanced"
+
+  - name: "error_handling"
+    description: "Commands designed to test error handling"
+    environment: "home_apartment"
+    commands:
+      - text: "go to the non_existent_room"
+        expected_actions: ["SYSTEM"]
+        success_criteria: "System responds with error message"
+        difficulty: "beginner"
+
+      - text: "pick up the invisible_object"
+        expected_actions: ["PERCEPTION"]
+        success_criteria: "System handles non-existent object gracefully"
+        difficulty: "beginner"
+
+validation_criteria:
+  success_threshold: 0.8  # 80% success rate required
+  timeout_per_command: 60.0  # seconds
+  retry_attempts: 3
+  confidence_threshold: 0.7
+
+performance_metrics:
+  response_time:  # Maximum acceptable times
+    command_to_action: 10.0  # seconds
+    action_execution: 30.0  # seconds per action
+  accuracy:  # Minimum required accuracy
+    navigation: 0.95
+    object_detection: 0.90
+    manipulation: 0.85
+  safety_compliance: 1.0  # 100% required
+
+logging:
+  enable_detailed_logs: true
+  log_level: "INFO"
+  save_execution_trace: true
+  record_performance_metrics: true

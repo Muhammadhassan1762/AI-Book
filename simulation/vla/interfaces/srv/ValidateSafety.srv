@@ -1,0 +1,23 @@
+# Safety Validation Service
+# Service for validating action sequences for safety compliance
+
+# Request
+VLAActionSequence action_sequence
+
+---
+# Response
+bool is_safe
+bool requires_confirmation
+string[] safety_issues
+string error_message
+int32 error_code  # 0=Success, 1=General error, 2=Invalid input, 3=Timeout, 4=Safety violation, 5=Resource unavailable
+
+# Example Request:
+# action_sequence: VLAActionSequence with navigation and manipulation actions
+
+# Example Response:
+# is_safe: true
+# requires_confirmation: false
+# safety_issues: []
+# error_message: ""
+# error_code: 0

@@ -1,0 +1,40 @@
+# VLA Integration Configuration
+# Configuration for the main integration pipeline in the Vision-Language-Action system
+
+vla_pipeline_node:
+  ros__parameters:
+    # Pipeline execution settings
+    enable_pipeline: true           # Whether to enable the full VLA pipeline
+    pipeline_mode: "auto"           # Options: auto, manual, test
+    execution_timeout: 300.0        # Maximum time for pipeline execution in seconds
+    max_replanning_attempts: 3      # Number of replanning attempts on failure
+
+    # Safety validation settings
+    safety_check_enabled: true      # Whether to perform safety validation
+    safety_confirmation_required: false  # Whether to require user confirmation for actions
+    safety_threshold: 0.8           # Minimum safety score for action execution
+
+    # Topic names for ROS communication
+    command_input_topic: "/vla/command"
+    action_sequence_input_topic: "/vla/action_sequence"
+    status_output_topic: "/vla/status"
+    error_output_topic: "/vla/error"
+
+    # Service names
+    process_command_service: "/vla/process_command"
+    validate_safety_service: "/vla/validate_safety"
+    execute_pipeline_service: "/vla/execute_pipeline"
+
+    # Context management
+    enable_context_tracking: true   # Track execution context
+    context_retention_time: 300.0   # Time to retain context in seconds
+    enable_context_sharing: true    # Share context between components
+
+    # Debug settings
+    enable_debug: false
+    log_level: "INFO"
+    enable_detailed_logging: false
+
+    # Performance monitoring
+    enable_performance_monitoring: true
+    performance_log_interval: 10.0  # Interval to log performance metrics

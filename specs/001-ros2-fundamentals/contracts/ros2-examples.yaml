@@ -1,0 +1,53 @@
+# ROS 2 Examples API Contract
+
+## Overview
+This contract defines the API for ROS 2 example nodes used in the educational content for Module 1: The Robotic Nervous System (ROS 2).
+
+## Node: Basic Publisher
+- **Node Name**: `basic_publisher`
+- **Purpose**: Demonstrates basic message publishing in ROS 2
+
+### Publishers
+- **Topic**: `chatter`
+- **Message Type**: `std_msgs/String`
+- **Frequency**: 2 Hz
+- **Message Format**: "Hello World: X" where X is the message count
+
+## Node: Basic Subscriber
+- **Node Name**: `basic_subscriber`
+- **Purpose**: Demonstrates basic message subscription in ROS 2
+
+### Subscribers
+- **Topic**: `chatter`
+- **Message Type**: `std_msgs/String`
+- **Callback**: Logs received messages to console
+
+## Node: Service Server
+- **Node Name**: `add_two_ints_server`
+- **Purpose**: Demonstrates service creation in ROS 2
+
+### Services
+- **Service Name**: `add_two_ints`
+- **Service Type**: `example_interfaces/srv/AddTwoInts`
+- **Function**: Adds two integers provided in the request
+
+## Node: Service Client
+- **Node Name**: `add_two_ints_client`
+- **Purpose**: Demonstrates service calling in ROS 2
+
+### Clients
+- **Service Name**: `add_two_ints`
+- **Service Type**: `example_interfaces/srv/AddTwoInts`
+- **Function**: Requests addition of two integers from the server
+
+## Node: URDF Parser
+- **Node Name**: `urdf_parser`
+- **Purpose**: Demonstrates URDF model loading and parsing
+
+### Publishers
+- **Topic**: `robot_description`
+- **Message Type**: `std_msgs/String`
+- **Function**: Publishes URDF model as string for visualization
+
+### Parameters
+- **urdf_file**: Path to URDF file to load (default: `simple_robot.urdf`)
